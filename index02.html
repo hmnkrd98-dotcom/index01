@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faculty of Engineering — Design 2: Modern Slate &amp; Amber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-950:#0f1720;
+    --slate-900:#16233a;
+    --slate-800:#1e2f4a;
+    --slate-700:#2a4066;
+    --amber-500:#e2a33b;
+    --amber-300:#f0c06e;
+    --paper:#f5f6f8;
+    --line:#dfe3ea;
+    --text:#1c2430;
+    --text-soft:#5c6577;
+    --white:#ffffff;
+    --font-display:'Space Grotesk', 'IBM Plex Sans', sans-serif;
+    --font-body:'IBM Plex Sans', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--font-body);color:var(--text);background:var(--paper);line-height:1.55;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1260px;margin:0 auto;padding:0 32px;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* Utility bar */
+  .utility-bar{background:var(--ink-950);color:#b9c2d1;font-size:13px;}
+  .utility-bar .wrap{display:flex;justify-content:space-between;padding:8px 32px;flex-wrap:wrap;gap:8px;align-items:center;}
+  .utility-contacts{display:flex;gap:20px;}
+  .utility-contacts a{display:flex;gap:6px;align-items:center;}
+  .utility-contacts a:hover{color:var(--amber-300);}
+  .utility-contacts svg{width:13px;height:13px;}
+  .utility-social{display:flex;gap:16px;}
+  .utility-social svg{width:14px;height:14px;}
+  .utility-social a:hover{color:var(--amber-300);}
+
+  /* Main nav */
+  .main-nav{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40;}
+  .main-nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;gap:24px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-mark{width:40px;height:40px;background:var(--slate-900);color:var(--amber-300);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:14px;flex:none;}
+  .brand-text .kicker{font-size:11px;color:var(--text-soft);letter-spacing:.04em;text-transform:uppercase;}
+  .brand-text .title{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--slate-900);}
+  .nav-links{display:flex;gap:2px;align-items:center;}
+  .nav-links a{padding:10px 15px;font-size:14.5px;font-weight:500;color:var(--text);position:relative;}
+  .nav-links a.active, .nav-links a:hover{color:var(--slate-900);}
+  .nav-links a.active::after{content:"";position:absolute;left:15px;right:15px;bottom:2px;height:2px;background:var(--amber-500);}
+  .nav-links .has-caret{display:flex;align-items:center;gap:4px;}
+  .nav-links .has-caret svg{width:9px;height:9px;}
+  .nav-cta{background:var(--amber-500);color:var(--ink-950);padding:11px 22px;font-size:14px;font-weight:700;border:none;}
+  .nav-cta:hover{background:var(--amber-300);}
+
+  /* Hero — asymmetric split */
+  .hero{background:var(--slate-900);color:#fff;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;min-height:520px;}
+  .hero-copy{padding:88px 0 60px 32px;display:flex;flex-direction:column;justify-content:center;max-width:560px;}
+  .hero-eyebrow{color:var(--amber-300);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;}
+  .hero h1{font-family:var(--font-display);font-size:52px;line-height:1.08;margin:0 0 18px;font-weight:600;}
+  .hero p{color:#c3cbdb;font-size:17px;margin:0 0 32px;max-width:44ch;}
+  .hero-actions{display:flex;gap:14px;}
+  .btn-primary{background:var(--amber-500);color:var(--ink-950);padding:14px 24px;font-weight:700;font-size:14.5px;border:none;}
+  .btn-primary:hover{background:var(--amber-300);}
+  .btn-outline{border:1.5px solid rgba(255,255,255,.4);color:#fff;padding:13px 24px;font-weight:600;font-size:14.5px;background:transparent;}
+  .btn-outline:hover{border-color:#fff;}
+  .hero-photo{position:relative;background:
+      repeating-linear-gradient(45deg, rgba(226,163,59,.10) 0 1px, transparent 1px 34px),
+      linear-gradient(160deg,#2a4066,#16233a 65%);
+    display:flex;align-items:flex-end;padding:28px;}
+  .hero-photo-note{background:rgba(0,0,0,.4);color:#fff;font-size:12px;padding:8px 14px;border:1px solid rgba(255,255,255,.25);}
+
+  /* Stats — inline cards over the seam */
+  .stats-wrap{background:var(--paper);}
+  .stats-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:-56px;position:relative;z-index:5;}
+  .stat-card{background:var(--white);padding:30px 24px;}
+  .stat-card .num{font-family:var(--font-display);font-size:34px;font-weight:700;color:var(--slate-900);}
+  .stat-card .lbl{font-size:13.5px;color:var(--text-soft);margin-top:6px;}
+  .stat-card svg{width:22px;height:22px;color:var(--amber-500);margin-bottom:14px;}
+
+  .section{padding:88px 0 72px;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;gap:20px;flex-wrap:wrap;}
+  .section-head h2{font-family:var(--font-display);font-size:30px;color:var(--slate-900);margin:0;font-weight:700;}
+  .section-head .sub{color:var(--text-soft);font-size:14.5px;margin-top:6px;}
+  .link-arrow{display:flex;align-items:center;gap:6px;color:var(--slate-900);font-weight:600;font-size:14px;padding-bottom:2px;border-bottom:2px solid var(--amber-500);}
+  .link-arrow svg{width:13px;height:13px;}
+
+  /* Activities — offset grid */
+  .activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);}
+  .act-card{background:var(--white);display:flex;flex-direction:column;}
+  .act-photo{height:150px;background:linear-gradient(135deg,#2a4066,#e2a33b);}
+  .act-body{padding:22px 22px 26px;}
+  .act-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--slate-700);background:#eef1f6;padding:4px 9px;margin-bottom:12px;}
+  .act-body h3{font-size:17px;margin:0 0 8px;line-height:1.35;}
+  .act-body p{font-size:13.5px;color:var(--text-soft);margin:0 0 12px;}
+  .act-meta{font-size:12.5px;color:var(--slate-700);font-weight:600;}
+
+  /* News */
+  .news-layout{display:grid;grid-template-columns:1.4fr 1fr;gap:2px;background:var(--line);border:1px solid var(--line);}
+  .news-featured{background:var(--white);display:flex;flex-direction:column;}
+  .news-featured .photo{height:280px;background:linear-gradient(150deg,#16233a,#2a4066 60%,#e2a33b);position:relative;}
+  .news-featured .badge{position:absolute;top:18px;left:0;background:var(--amber-500);color:var(--ink-950);font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:7px 14px;}
+  .news-featured .content{padding:26px 28px 30px;}
+  .news-featured .meta{font-size:12.5px;color:var(--text-soft);margin-bottom:10px;text-transform:uppercase;letter-spacing:.03em;}
+  .news-featured h3{font-family:var(--font-display);font-size:23px;margin:0 0 10px;line-height:1.32;color:var(--slate-900);}
+  .news-featured p{color:var(--text-soft);font-size:14.5px;margin:0;}
+
+  .news-list{background:var(--white);display:flex;flex-direction:column;}
+  .news-list-item{padding:20px 24px;border-bottom:1px solid var(--line);}
+  .news-list-item:last-child{border-bottom:none;}
+  .news-list-item .dt{font-size:11.5px;color:var(--amber-500);font-weight:700;letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px;}
+  .news-list-item h4{font-size:14.5px;margin:0;line-height:1.4;color:var(--text);}
+
+  footer{background:var(--ink-950);color:#7c8598;padding:22px 0;font-size:13px;text-align:center;}
+
+  @media (max-width: 940px){
+    .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-photo{min-height:220px;}
+    .stats-cards{grid-template-columns:repeat(2,1fr);margin-top:0;}
+    .activities-grid{grid-template-columns:1fr;}
+    .news-layout{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="utility-bar">
+    <div class="wrap">
+      <div class="utility-contacts">
+        <a href="tel:+9647501234567">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +964 750 123 4567
+        </a>
+        <a href="mailto:engineering@tiu.edu.iq">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+          engineering@tiu.edu.iq
+        </a>
+      </div>
+      <div class="utility-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.7h2.6l.4-3h-3v-1.93c0-.87.24-1.46 1.5-1.46H16.6V4.14C16.13 4.08 15.24 4 14.2 4 12 4 10.5 5.32 10.5 7.8v2.5H8v3h2.5V21h3z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21h-4z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.9 2.9 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.3a2.9 2.9 0 0 0-2 2C2 8.8 2 12 2 12s0 3.2.4 4.7a2.9 2.9 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.3a2.9 2.9 0 0 0 2-2C22 15.2 22 12 22 12zM10 15.3V8.7L15.5 12z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    <div class="wrap">
+      <a class="brand" href="#">
+        <div class="brand-mark">TIU</div>
+        <div class="brand-text">
+          <div class="kicker">Tishk International University</div>
+          <div class="title">Faculty of Engineering</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#" class="active">Home</a>
+        <a href="#">About</a>
+        <a href="#" class="has-caret">Academic Departments <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="#">Activities</a>
+        <a href="#">News</a>
+        <a href="#">Contact</a>
+      </div>
+      <button class="nav-cta">Apply Now</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap" style="padding:0;">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="hero-eyebrow">Faculty of Engineering</span>
+          <h1>Engineering education built for what comes next.</h1>
+          <p>Nine departments, applied labs, and a faculty shaping graduates who solve real problems from day one.</p>
+          <div class="hero-actions">
+            <button class="btn-primary">Explore Departments</button>
+            <button class="btn-outline">Faculty Activities</button>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <span class="hero-photo-note">[ hero photograph — lab / studio ]</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="stats-wrap">
+    <div class="wrap">
+      <div class="stats-cards">
+        <div class="stat-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <div class="num">9</div><div class="lbl">Departments</div>
+        </div>
+        <div class="stat-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="num">96</div><div class="lbl">Academic Staff</div>
+        </div>
+        <div class="stat-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
+          <div class="num">1,840</div><div class="lbl">Enrolled Students</div>
+        </div>
+        <div class="stat-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg>
+          <div class="num">12</div><div class="lbl">Bachelor &amp; Master Programs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Faculty Activities</h2><div class="sub">Workshops, seminars and student competitions across our departments.</div></div>
+        <a class="link-arrow" href="#">View all activities <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="activities-grid">
+        <article class="act-card">
+          <div class="act-photo"></div>
+          <div class="act-body">
+            <span class="act-tag">Workshop</span>
+            <h3>Robotics &amp; Automation Bootcamp</h3>
+            <p>A three-day hands-on session run by the Mechatronics department for final-year students.</p>
+            <div class="act-meta">Oct 14, 2026</div>
+          </div>
+        </article>
+        <article class="act-card">
+          <div class="act-photo"></div>
+          <div class="act-body">
+            <span class="act-tag">Seminar</span>
+            <h3>Sustainable Structures in Practice</h3>
+            <p>Guest lecture with visiting structural engineers from the region's leading design firms.</p>
+            <div class="act-meta">Oct 22, 2026</div>
+          </div>
+        </article>
+        <article class="act-card">
+          <div class="act-photo"></div>
+          <div class="act-body">
+            <span class="act-tag">Competition</span>
+            <h3>Inter-Faculty Coding Challenge</h3>
+            <p>Computer Engineering students compete in a 24-hour applied problem-solving contest.</p>
+            <div class="act-meta">Nov 2, 2026</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Faculty News</h2><div class="sub">The latest from our departments, staff and students.</div></div>
+        <a class="link-arrow" href="#">All news <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="news-layout">
+        <article class="news-featured">
+          <div class="photo"><span class="badge">Latest</span></div>
+          <div class="content">
+            <div class="meta">September 18, 2026 — Faculty of Engineering</div>
+            <h3>Faculty of Engineering signs research partnership with regional industry council</h3>
+            <p>The agreement opens new applied-research placements for senior students across the Civil, Mechanical and Computer Engineering departments starting next semester.</p>
+          </div>
+        </article>
+        <div class="news-list">
+          <div class="news-list-item"><div class="dt">Sep 10</div><h4>New materials-testing lab opens for Civil Engineering</h4></div>
+          <div class="news-list-item"><div class="dt">Sep 03</div><h4>Graduate students present at regional AI symposium</h4></div>
+          <div class="news-list-item"><div class="dt">Aug 28</div><h4>Department of Architecture hosts open studio day</h4></div>
+          <div class="news-list-item"><div class="dt">Aug 19</div><h4>Faculty welcomes three new visiting professors</h4></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Design sample 2 of 3 — Modern Slate &amp; Amber · Faculty of Engineering, Tishk International University</footer>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faculty of Engineering — Design 12: Violet Circuit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet-950:#3d0f20; --violet-800:#7a1f3d; --violet-700:#8f2549;
+    --lime-400:#c89b3c; --lime-300:#e6c877;
+    --ink:#241318; --ink-soft:#5b4a4f;
+    --paper:#faf7f3; --paper-dim:#f1ebe3; --line:#e4d9cd; --white:#fff;
+    --font-display:'Sora', sans-serif;
+    --font-body:'Manrope', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.55;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+  button{font-family:inherit;cursor:pointer;}
+
+  .utility-bar{background:var(--violet-950);color:#f0dde3;font-size:13px;}
+  .utility-bar .wrap{display:flex;justify-content:space-between;align-items:center;padding:9px 32px;flex-wrap:wrap;gap:8px;}
+  .utility-contacts{display:flex;gap:20px;}
+  .utility-contacts a{display:flex;gap:6px;align-items:center;}
+  .utility-contacts a:hover{color:var(--lime-400);}
+  .utility-contacts svg{width:13px;height:13px;}
+  .utility-social{display:flex;gap:14px;}
+  .utility-social svg{width:14px;height:14px;}
+  .utility-social a:hover{color:var(--lime-400);}
+
+  .main-nav{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40;}
+  .main-nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:15px 32px;gap:24px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-mark{width:42px;height:42px;background:var(--violet-800);color:var(--lime-400);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:14px;flex:none;transform:rotate(-4deg);}
+  .brand-text .kicker{font-size:11px;color:var(--ink-soft);}
+  .brand-text .title{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--violet-800);}
+  .nav-links{display:flex;gap:4px;align-items:center;}
+  .nav-links a{padding:10px 15px;font-size:14.5px;font-weight:600;color:var(--ink);border-radius:6px;}
+  .nav-links a.active,.nav-links a:hover{background:var(--paper-dim);color:var(--violet-800);}
+  .nav-links .has-caret{display:flex;align-items:center;gap:5px;}
+  .nav-links .has-caret svg{width:9px;height:9px;}
+  .nav-cta{background:var(--lime-400);color:var(--violet-950);padding:11px 22px;font-size:14px;font-weight:800;border:none;}
+  .nav-cta:hover{background:var(--lime-300);}
+
+  /* Hero — diagonal split */
+  .hero{position:relative;background:var(--violet-800);color:#fff;overflow:hidden;min-height:500px;}
+  .hero::after{content:"";position:absolute;top:0;right:-8%;width:55%;height:100%;background:var(--violet-950);clip-path:polygon(30% 0,100% 0,100% 100%,0 100%);}
+  .hero-inner{position:relative;padding:88px 0 72px;max-width:600px;}
+  .hero-tag{display:inline-block;background:var(--lime-400);color:var(--violet-950);font-size:12.5px;font-weight:800;padding:6px 13px;margin-bottom:20px;transform:rotate(-2deg);}
+  .hero h1{font-family:var(--font-display);font-size:50px;line-height:1.08;margin:0 0 18px;font-weight:800;}
+  .hero p{color:#f0dde3;font-size:16.5px;margin:0 0 32px;max-width:46ch;}
+  .hero-actions{display:flex;gap:14px;}
+  .btn-primary{background:var(--lime-400);color:var(--violet-950);padding:14px 26px;font-weight:800;font-size:14.5px;border:none;}
+  .btn-primary:hover{background:var(--lime-300);}
+  .btn-outline{border:2px solid rgba(255,255,255,.5);color:#fff;padding:12px 26px;font-weight:700;font-size:14.5px;background:transparent;}
+  .btn-outline:hover{border-color:#fff;}
+  .hero-note{position:absolute;bottom:24px;right:36px;font-size:11.5px;color:#f0dde3;background:rgba(0,0,0,.25);padding:5px 11px;z-index:2;}
+
+  /* Stats — asymmetric bold blocks */
+  .stats-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px;padding:44px 0 0;}
+  .stat-block{padding:32px 26px;color:#fff;}
+  .stat-block.big{background:var(--violet-800);grid-row:span 2;display:flex;flex-direction:column;justify-content:center;}
+  .stat-block.mid{background:var(--violet-700);}
+  .stat-block.lime{background:var(--lime-400);color:var(--violet-950);}
+  .stat-num{font-family:var(--font-display);font-size:40px;font-weight:800;}
+  .stat-block.big .stat-num{font-size:56px;}
+  .stat-lbl{font-size:14px;margin-top:6px;opacity:.85;}
+
+  .section{padding:76px 0 72px;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:34px;gap:20px;flex-wrap:wrap;}
+  .section-head h2{font-family:var(--font-display);font-size:30px;color:var(--violet-800);margin:0;font-weight:800;}
+  .section-head .sub{color:var(--ink-soft);font-size:14.5px;margin-top:6px;}
+  .link-arrow{color:var(--violet-800);font-weight:700;font-size:14px;border-bottom:2px solid var(--lime-400);padding-bottom:2px;}
+
+  /* Activities — offset hard-shadow cards */
+  .activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .act-card{background:var(--white);border:2px solid var(--violet-800);box-shadow:8px 8px 0 var(--lime-400);}
+  .act-photo{height:150px;background:linear-gradient(135deg,var(--violet-700),var(--violet-950));border-bottom:2px solid var(--violet-800);}
+  .act-body{padding:22px 20px 24px;}
+  .act-tag{display:inline-block;background:var(--violet-800);color:var(--lime-400);font-size:11px;font-weight:800;padding:4px 10px;margin-bottom:12px;}
+  .act-body h3{font-size:16.5px;margin:0 0 8px;font-weight:700;}
+  .act-body p{font-size:13.5px;color:var(--ink-soft);margin:0 0 8px;}
+  .act-body .date{font-size:12px;color:var(--violet-800);font-weight:700;}
+
+  /* News — staggered masonry */
+  .news-masonry{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .news-card{background:var(--white);border:2px solid var(--violet-800);overflow:hidden;}
+  .news-card.tall{grid-row:span 2;}
+  .news-card .photo{height:150px;background:linear-gradient(135deg,var(--violet-950),var(--violet-700));position:relative;}
+  .news-card.tall .photo{height:230px;}
+  .news-card .badge{position:absolute;top:12px;left:12px;background:var(--lime-400);color:var(--violet-950);font-size:11px;font-weight:800;padding:5px 10px;}
+  .news-card .content{padding:18px 18px 20px;}
+  .news-card .meta{font-size:12px;color:var(--ink-soft);margin-bottom:6px;}
+  .news-card h3{font-size:15.5px;margin:0;font-weight:700;line-height:1.35;}
+
+  footer{background:var(--violet-950);color:#cdb9c0;padding:20px 0;font-size:13px;text-align:center;}
+
+  @media (max-width: 980px){
+    .nav-links{display:none;}
+    .hero::after{display:none;}
+    .hero h1{font-size:32px;}
+    .stats-grid{grid-template-columns:1fr 1fr;}
+    .stat-block.big{grid-row:auto;}
+    .activities-grid{grid-template-columns:1fr;}
+    .news-masonry{grid-template-columns:1fr;}
+    .news-card.tall{grid-row:auto;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="utility-bar">
+    <div class="wrap">
+      <div class="utility-contacts">
+        <a href="tel:+9647501234567"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +964 750 123 4567</a>
+        <a href="mailto:engineering@tiu.edu.iq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg> engineering@tiu.edu.iq</a>
+      </div>
+      <div class="utility-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.7h2.6l.4-3h-3v-1.93c0-.87.24-1.46 1.5-1.46H16.6V4.14C16.13 4.08 15.24 4 14.2 4 12 4 10.5 5.32 10.5 7.8v2.5H8v3h2.5V21h3z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1"/></svg></a>
+        <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l7.5 9.3L3.4 21H6l5.6-6.3L16 21h5l-7.8-9.7L20.6 3H18l-5.2 5.8L8 3z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.9 2.9 0 0 0-2-2C17.9 5 12 5 12 5s-5.9 0-7.6.3a2.9 2.9 0 0 0-2 2C2 8.8 2 12 2 12s0 3.2.4 4.7a2.9 2.9 0 0 0 2 2C6.1 19 12 19 12 19s5.9 0 7.6-.3a2.9 2.9 0 0 0 2-2C22 15.2 22 12 22 12zM10 15.3V8.7L15.5 12z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    <div class="wrap">
+      <a class="brand" href="#">
+        <div class="brand-mark">TIU</div>
+        <div class="brand-text"><div class="kicker">Tishk International University</div><div class="title">Faculty of Engineering</div></div>
+      </a>
+      <div class="nav-links">
+        <a href="#" class="active">Home</a>
+        <a href="#">About</a>
+        <a href="#" class="has-caret">Academic Departments <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="#">Activities</a>
+        <a href="#">News</a>
+        <a href="#">Contact</a>
+      </div>
+      <button class="nav-cta">Apply Now</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <span class="hero-tag">Faculty of Engineering</span>
+      <h1>Build things that didn't exist yesterday.</h1>
+      <p>Nine departments, applied labs and a faculty pushing students to ship real projects, not just pass exams.</p>
+      <div class="hero-actions">
+        <button class="btn-primary">Explore Departments</button>
+        <button class="btn-outline">Faculty Activities</button>
+      </div>
+    </div>
+    <span class="hero-note">[ hero photo — lab / studio ]</span>
+  </header>
+
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-block big"><div class="stat-num">1,840</div><div class="stat-lbl">Enrolled Students</div></div>
+      <div class="stat-block mid"><div class="stat-num">9</div><div class="stat-lbl">Departments</div></div>
+      <div class="stat-block lime"><div class="stat-num">96</div><div class="stat-lbl">Academic Staff</div></div>
+      <div class="stat-block mid"><div class="stat-num">12</div><div class="stat-lbl">Bachelor &amp; Master Programs</div></div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Faculty Activities</h2><div class="sub">Workshops, seminars and student competitions across our departments.</div></div>
+        <a class="link-arrow" href="#">View all activities</a>
+      </div>
+      <div class="activities-grid">
+        <article class="act-card"><div class="act-photo"></div><div class="act-body"><span class="act-tag">Workshop</span><h3>Robotics &amp; Automation Bootcamp</h3><p>A three-day hands-on session run by the Mechatronics department.</p><div class="date">Oct 14, 2026</div></div></article>
+        <article class="act-card"><div class="act-photo"></div><div class="act-body"><span class="act-tag">Seminar</span><h3>Sustainable Structures in Practice</h3><p>Guest lecture with visiting structural engineers.</p><div class="date">Oct 22, 2026</div></div></article>
+        <article class="act-card"><div class="act-photo"></div><div class="act-body"><span class="act-tag">Competition</span><h3>Inter-Faculty Coding Challenge</h3><p>24-hour applied problem-solving contest.</p><div class="date">Nov 2, 2026</div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Faculty News</h2><div class="sub">The latest from our departments, staff and students.</div></div>
+        <a class="link-arrow" href="#">All news</a>
+      </div>
+      <div class="news-masonry">
+        <article class="news-card tall">
+          <div class="photo"><span class="badge">Latest</span></div>
+          <div class="content"><div class="meta">September 18, 2026</div><h3>Faculty signs research partnership with regional industry council</h3></div>
+        </article>
+        <article class="news-card"><div class="photo"></div><div class="content"><div class="meta">September 10, 2026</div><h3>New materials-testing lab opens for Civil Engineering</h3></div></article>
+        <article class="news-card"><div class="photo"></div><div class="content"><div class="meta">September 3, 2026</div><h3>Graduate students present at regional AI symposium</h3></div></article>
+        <article class="news-card"><div class="photo"></div><div class="content"><div class="meta">August 28, 2026</div><h3>Department of Architecture hosts open studio day</h3></div></article>
+        <article class="news-card"><div class="photo"></div><div class="content"><div class="meta">August 19, 2026</div><h3>Faculty welcomes three new visiting professors</h3></div></article>
+      </div>
+    </div>
+  </section>
+
+  <footer>Design sample 12 — Circuit, Maroon · Faculty of Engineering, Tishk International University</footer>
+
+</body>
+</html>
